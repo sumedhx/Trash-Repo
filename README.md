@@ -26,6 +26,61 @@ Exp 9 - Push btn interface using Arduino
 https://www.tinkercad.com/things/7exN8zfCPdO-glorious-bigery-crift/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=Exk8ylh4PciomYni17940gDvyme5XO5p666nBEND_CM
 ![Glorious Bigery-Crift](https://github.com/user-attachments/assets/fccfb2ad-7488-4585-b34a-e8fba4061b5f)
 
+--- EXP9 CODE --
+// Pin configuration
+const int buttonPin1 = 9; // Pin for 1st push button
+const int buttonPin2 = 12; // Pin for 2nd push button
+const int buzzerPin = 5; // Pin for the buzzer
+const int ledPin = 13; // Pin for the LED (optional, for visual feedback)
+
+// Variables to store the button states
+int buttonState1 = 0; 
+int buttonState2 = 0;
+
+void setup() {
+  // Initialize the serial monitor
+  Serial.begin(9600);
+  
+  // Set the button pins as input
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+  
+  // Set the buzzer and LED pins as output
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read the state of the push buttons
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+  
+  // Check the state of the first push button
+  if (buttonState1 == HIGH) {
+    // Turn on the LED when button 1 is pressed
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Button 1 Pressed: LED ON");
+  } else {
+    // Turn off the LED when button 1 is not pressed
+    digitalWrite(ledPin, LOW);
+    Serial.println("Button 1 Released: LED OFF");
+  }
+
+  // Check the state of the second push button
+  if (buttonState2 == HIGH) {
+    // Turn on the buzzer when button 2 is pressed
+    digitalWrite(buzzerPin, HIGH);
+    Serial.println("Button 2 Pressed: Buzzer ON");
+  } else {
+    // Turn off the buzzer when button 2 is not pressed
+    digitalWrite(buzzerPin, LOW);
+    Serial.println("Button 2 Released: Buzzer OFF");
+  }
+
+  delay(100); // Small delay for debounce
+}
+--- EXP9 CODE END ----
+
 
 Exp 10 - Interfacing Light sensor LDR
 https://www.tinkercad.com/things/ceXwJGjOi1O-/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=ZVoooXIsnDcYqFYaj8e8W7SFyD7T5RPHZ0SQn2bEE08
